@@ -21,7 +21,7 @@ app.use("/volunteer", volunteerForm)
 
 app.post("/login", async (req, res) => {
     const { email, password } = req.body
-    if (email == "info@net-trix.ca" && password == "Netrix2024@@") {
+    if (email == "info@net-trix.ca" && password == "Saskatoon2024@@") {
         return res.json({ loggedIn: true })
     } else {
         res.json({ err: "Invalid login credentials check and try again" })
