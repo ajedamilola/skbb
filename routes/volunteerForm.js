@@ -27,6 +27,15 @@ volunteerForm.post("/", async (req, res, next) => {
     }
 })
 
+volunteerForm.delete("/:id", async (req, res, next) => {
+    try {
+        await VolunteerForm.findByIdAndDelete(req.params.id)
+        res.json({})
+    } catch (error) {
+        next(error)
+    }
+})
+
 volunteerForm.get("/all", async (req, res, next) => {
     try {
         if (await authentication(req)) {

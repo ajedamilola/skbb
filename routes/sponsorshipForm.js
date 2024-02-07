@@ -27,6 +27,15 @@ sponsorshipForm.post("/", async (req, res, next) => {
     }
 })
 
+sponsorshipForm.delete("/:id", async (req, res, next) => {
+    try {
+        await SponsorshipForm.findByIdAndDelete(req.params.id)
+        res.json({})
+    } catch (error) {
+        next(error)
+    }
+})
+
 sponsorshipForm.get("/all", async (req, res, next) => {
     try {
         if (await authentication(req)) {

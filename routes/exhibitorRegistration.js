@@ -27,6 +27,15 @@ exhibitorsReg.post("/", async (req, res, next) => {
     }
 })
 
+exhibitorsReg.delete("/:id", async (req, res, next) => {
+    try {
+        await ExhibitorsRegistration.findByIdAndDelete(req.params.id)
+        res.json({})
+    } catch (error) {
+        next(error)
+    }
+})
+
 exhibitorsReg.get("/all", async (req, res, next) => {
     try {
         if (await authentication(req)) {

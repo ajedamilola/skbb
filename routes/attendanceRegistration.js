@@ -1,5 +1,5 @@
 const { Router } = require("express");
-const {AttendanceRegistration} = require("../models/AttendaceRegistrationForm");
+const { AttendanceRegistration } = require("../models/AttendaceRegistrationForm");
 const authentication = require("../authentication");
 
 const attendanceRegistration = Router()
@@ -7,7 +7,7 @@ const attendanceRegistration = Router()
 attendanceRegistration.post("/", async (req, res, next) => {
     console.log(req.body)
     try {
-        const { email, phone} = req.body
+        const { email, phone } = req.body
         const former = await AttendanceRegistration.findOne({
             $or: [
                 { email },
@@ -22,6 +22,15 @@ attendanceRegistration.post("/", async (req, res, next) => {
         //send email here
         const attendee = await AttendanceRegistration.create(req.body)
         res.status(200).json({ attendee })
+    } catch (error) {
+        next(error)
+    }
+})
+
+attendanceRegistration.delete("/:id", async (req, res, next) => {
+    try {
+        await AttendanceRegistration.findByIdAndDelete(req.params.id)
+        res.json({})
     } catch (error) {
         next(error)
     }
