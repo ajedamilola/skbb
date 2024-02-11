@@ -63,6 +63,8 @@ const volunteerSchema = new Schema({
         type: Date,
         default: () => Date.now()
     },
+    reason:String,
+    specific:String
 })
 
 const VolunteerForm = model("volunteerForm", volunteerSchema)
