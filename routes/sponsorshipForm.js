@@ -15,7 +15,7 @@ sponsorshipForm.post("/", async (req, res, next) => {
             ]
         })
         if (former) {
-            return res.status(400).json({
+            return res.json({
                 err: former.email == email ? "This email is already being used" : "Sorry this phone number has been taken already"
             })
         }
@@ -42,7 +42,7 @@ sponsorshipForm.get("/all", async (req, res, next) => {
             const sponsorRequests = await SponsorshipForm.find()
             res.json({ sponsorRequests })
         } else {
-            return res.status(400).json({ err: "Unable to authenticate request" })
+            return res.json({ err: "Unable to authenticate request" })
         }
     } catch (error) {
         next(error)
