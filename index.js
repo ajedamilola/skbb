@@ -7,6 +7,7 @@ const connectDatabase = require("./models/database")
 const exhibitorsReg = require("./routes/exhibitorRegistration")
 const sponsorshipForm = require("./routes/sponsorshipForm")
 const volunteerForm = require("./routes/volunteerForm")
+const feedbackForm = require("./routes/feedbackForm")
 const bodyp = require("body-parser")
 const bodyParser = require("body-parser")
 config()
@@ -18,6 +19,7 @@ app.use("/attendee", attendanceRegistration)
 app.use("/exhibitor", exhibitorsReg)
 app.use("/sponsorship", sponsorshipForm)
 app.use("/volunteer", volunteerForm)
+app.use("/feedback", feedbackForm)
 
 app.post("/login", async (req, res) => {
     const { email, password } = req.body

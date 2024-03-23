@@ -1,4 +1,4 @@
-const { Schema, model } = require("mongoose");
+const { Schema, model, SchemaType, SchemaTypes } = require("mongoose");
 
 const schema = new Schema({
     name: String,
@@ -68,6 +68,14 @@ const volunteerSchema = new Schema({
 })
 
 const VolunteerForm = model("volunteerForm", volunteerSchema)
+const feedback = new Schema({
+    date:{
+        type:Date,
+        default:Date.now
+    },
+    data:SchemaTypes.Mixed
+})
+const Feedback = model("feedback", feedback)
 
 
-module.exports = { AttendanceRegistration, ExhibitorsRegistration, SponsorshipForm, VolunteerForm }
+module.exports = { AttendanceRegistration, ExhibitorsRegistration, SponsorshipForm, VolunteerForm, Feedback }
