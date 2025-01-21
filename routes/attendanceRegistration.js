@@ -1,6 +1,7 @@
 const { Router } = require("express");
 const { AttendanceRegistration } = require("../models/AttendaceRegistrationForm");
 const authentication = require("../authentication");
+const fs = require("fs");
 
 const attendanceRegistration = Router()
 
@@ -21,6 +22,10 @@ attendanceRegistration.post("/", async (req, res, next) => {
         }
         //send email here
         const attendee = await AttendanceRegistration.create(req.body)
+        if (req.files && req.files.studentID) {
+            const studentId = req.files.studentID
+            studentId.mv(`./static/student_ids/${attendee.id}`)
+        }
         res.status(200).json({ attendee })
     } catch (error) {
         next(error)
@@ -45,6 +50,18 @@ attendanceRegistration.get("/all", async (req, res, next) => {
             return res.json({ err: "Unable to authenticate request" })
         }
     } catch (error) {
+        next(error)
+    }
+})
+
+attendanceRegistration.get("/student-id/:id", async (req, res, next) => {
+    try {
+        if (fs.existsSync(__dirname + "/static/student_ids/" + req.params.id)) {
+            return res.sendFile(__dirname + `/static/student_ids/${req.params.id}`)
+        } else {
+            res.send("File not found")
+        }
+    } catch {
         next(error)
     }
 })
