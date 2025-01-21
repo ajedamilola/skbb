@@ -9,6 +9,7 @@ const schema = new Schema({
     hearingMethod: Number,
     regType: Number,
     notes: String,
+    studentIdExtension: String,
     date: {
         type: Date,
         default: () => Date.now()
@@ -63,17 +64,17 @@ const volunteerSchema = new Schema({
         type: Date,
         default: () => Date.now()
     },
-    reason:String,
-    specific:String
+    reason: String,
+    specific: String
 })
 
 const VolunteerForm = model("volunteerForm", volunteerSchema)
 const feedback = new Schema({
-    date:{
-        type:Date,
-        default:Date.now
+    date: {
+        type: Date,
+        default: Date.now
     },
-    data:SchemaTypes.Mixed
+    data: SchemaTypes.Mixed
 })
 const Feedback = model("feedback", feedback)
 
