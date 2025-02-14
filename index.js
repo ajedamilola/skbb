@@ -20,8 +20,13 @@ app.use("/volunteer", volunteerForm)
 app.use("/feedback", feedbackForm)
 
 app.post("/login", async (req, res) => {
+    const users = [
+        { email: "info@net-trix.ca", password: "Saskatoon2024@@" },
+        { email: "ajedamilola2005@gmail.com", password: "Coding2005*@" },
+    ]
     const { email, password } = req.body
-    if (email == "info@net-trix.ca" && password == "Saskatoon2024@@") {
+    const user = users.some(u => u.email == email && u.password == password)
+    if (user) {
         return res.json({ loggedIn: true })
     } else {
         res.json({ err: "Invalid login credentials check and try again" })
