@@ -22,7 +22,7 @@ app.use("/feedback", feedbackForm)
 app.post("/login", async (req, res) => {
     const users = [
         { email: "info@net-trix.ca", password: "Saskatoon2024@@" },
-        { email: "ajedamilola2005@gmail.com", password: "Coding2005*@" },
+        { email: "admin@saskblackbusiness.ca", password: "Saskatoon2025@@" },
     ]
     const { email, password } = req.body
     const user = users.some(u => u.email == email && u.password == password)
